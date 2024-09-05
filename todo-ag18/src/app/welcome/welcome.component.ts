@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AppComponent } from '../app.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css',
 })
