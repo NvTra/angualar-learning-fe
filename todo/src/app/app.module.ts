@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     ErrorComponent,
     MenuComponent,
     LogoutComponent,
+    TodoComponent,
   ],
   imports: [
     BrowserModule,
