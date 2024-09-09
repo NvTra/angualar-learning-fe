@@ -12,8 +12,9 @@ import { MenuComponent } from './menu/menu.component';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { LogoutComponent } from './logout/logout.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TodoComponent } from './todo/todo.component';
+import { HttpIntercepterBasicService } from './service/http/http-intercepter-basic.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,13 @@ import { TodoComponent } from './todo/todo.component';
     NgIf,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpIntercepterBasicService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
