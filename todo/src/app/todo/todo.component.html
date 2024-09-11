@@ -1,5 +1,35 @@
-<H1>Todo</H1>
+<h1>Todo</h1>
 <div class="container">
+  <form [formGroup]="useForm" (ngSubmit)="saveTodo()">
+    <div class="row">
+      <mat-label>Description: </mat-label>
+      <mat-form-field appearance="outline" class="mx-2" style="width: 500px">
+        <input matInput formControlName="description" />
+        <mat-error *ngIf="useForm?.get('description')?.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-label>Target Date: </mat-label>
+      <mat-form-field appearance="outline" class="mx-2" style="width: 500px">
+        <input matInput [matDatepicker]="picker" formControlName="targetDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="useForm.get('targetDate')?.hasError('required')">
+          Target Date is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button class="btn btn-success" type="submit">
+      Save
+    </button>
+  </form>
+</div>
+
+<!-- <div class="container">
   <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">
     Enter valid values
   </div>
@@ -40,4 +70,4 @@
     </fieldset>
     <button type="submit" class="btn btn-success">Save</button>
   </form>
-</div>
+</div> -->

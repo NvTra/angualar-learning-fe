@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Delete file</h1>
+<div mat-dialog-content>Are you sure want delete?</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn btn-sm btn-info">No</button>
+  <span class="m-1"></span>
+  <button
+    mat-button
+    mat-dialog-close
+    (click)="onDelete()"
+    cdkFocusInitial
+    class="btn btn-danger btn-sm"
+  >
+    Delete
+  </button>
+</div>

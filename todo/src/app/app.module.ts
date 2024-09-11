@@ -9,13 +9,21 @@ import { FooterComponent } from './footer/footer.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { ErrorComponent } from './error/error.component';
 import { MenuComponent } from './menu/menu.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { LogoutComponent } from './logout/logout.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TodoComponent } from './todo/todo.component';
 import { HttpIntercepterBasicService } from './service/http/http-intercepter-basic.service';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +35,7 @@ import { HttpIntercepterBasicService } from './service/http/http-intercepter-bas
     MenuComponent,
     LogoutComponent,
     TodoComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +43,15 @@ import { HttpIntercepterBasicService } from './service/http/http-intercepter-bas
     FormsModule,
     NgIf,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

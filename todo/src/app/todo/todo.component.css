@@ -1,3 +1,8 @@
-.ng-invalid:not(form) {
+/* .ng-invalid:not(form) {
   border-left: 5px solid red;
+} */
+input.ng-valid,
+input.ng-invalid {
+  border: none !important;
+  outline: none !important;
 }

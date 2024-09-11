@@ -35,23 +35,18 @@ export class LoginComponent {
   }
 
   onBasicLogin() {
-    if (
-      this.basicAuthenticationComponent
-        .executeJWTAuthenticationService(this.username, this.password)
-        .subscribe(
-          (data) => {
-            console.log(data);
-          },
-          (error) => {
-            console.log(error);
-            this.invalidLogin = true;
-          }
-        )
-    ) {
-      this.invalidLogin = false;
-      this.router.navigate(['welcome', this.username]);
-    } else {
-      this.invalidLogin = true;
-    }
+    this.basicAuthenticationComponent
+      .executeJWTAuthenticationService(this.username, this.password)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.router.navigate(['welcome', this.username]);
+          this.invalidLogin = false;
+        },
+        (error) => {
+          console.log(error);
+          this.invalidLogin = true;
+        }
+      );
   }
 }
