@@ -74,6 +74,7 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '250px',
     });
+
     console.log(this.dialog);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

@@ -15,3 +15,11 @@ body {
   padding-bottom: 5px !important;
   min-height: 0 !important;
 }
+
+.mdc-label {
+  margin: 0px;
+}
+
+.pt-10px {
+  padding-top: 10px;
+}

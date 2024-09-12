@@ -2,19 +2,39 @@
 <div class="container">
   <form [formGroup]="useForm" (ngSubmit)="saveTodo()">
     <div class="row">
-      <mat-label>Description: </mat-label>
+      <mat-label class="pt-10px">Description: </mat-label>
       <mat-form-field appearance="outline" class="mx-2" style="width: 500px">
-        <input matInput formControlName="description" />
+        <input
+          matInput
+          formControlName="description"
+          placeholder="Please input description"
+        />
         <mat-error *ngIf="useForm?.get('description')?.hasError('required')">
-          This field is required
+          Description is required
+        </mat-error>
+        <mat-error *ngIf="useForm?.get('description')?.hasError('minlength')">
+          Description is too short
         </mat-error>
       </mat-form-field>
     </div>
 
+    <div *ngIf="showUpdate" class="row">
+      <mat-label class="pt-10px">Is Complete: </mat-label>
+      <mat-radio-group formControlName="done">
+        <mat-radio-button value="true">Done</mat-radio-button>
+        <mat-radio-button value="false">Not Done</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
     <div class="row">
-      <mat-label>Target Date: </mat-label>
+      <mat-label class="pt-10px">Target Date: </mat-label>
       <mat-form-field appearance="outline" class="mx-2" style="width: 500px">
-        <input matInput [matDatepicker]="picker" formControlName="targetDate" />
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="targetDate"
+          placeholder="Please input target Date"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="useForm.get('targetDate')?.hasError('required')">

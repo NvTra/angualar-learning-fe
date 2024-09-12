@@ -29,11 +29,14 @@ export class TodoComponent implements OnInit {
     if (this.id != -1) {
       this.todoServices.retrieveTodo('tranv', this.id).subscribe({
         next: (res) => {
+          // console.log(res);
           this.todo = res;
           this.useForm.patchValue({
             description: res.description,
             targetDate: res.targetDate,
+            done: res.done ? 'true' : 'false',
           });
+          console.log(this.useForm.value);
         },
         error: (error) => {
           console.log(error);
@@ -41,14 +44,16 @@ export class TodoComponent implements OnInit {
       });
       this.showUpdate = true;
     }
-
-    console.log(this.showUpdate);
   }
 
   initForm() {
     this.useForm = this.fb.group({
-      description: ['', Validators.required],
+      description: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(4)]),
+      ],
       targetDate: ['', Validators.required],
+      done: [false],
     });
   }
 
