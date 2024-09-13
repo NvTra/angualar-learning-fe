@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { IRequestPayLoad } from '../interfaces/request-payload';
+import { MatSort, Sort } from '@angular/material/sort';
 export class Todo {
   constructor(
     public id: number,
@@ -44,6 +45,7 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
   };
 
   @ViewChild(MatPaginator, { read: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.todos.paginator = this.paginator;
@@ -70,6 +72,18 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
     this.requestPayload.pageIndex = event.pageIndex;
     this.requestPayload.pageSize = event.pageSize;
 
+    this.refreshTodos();
+  }
+
+  onSort(sortState: Sort) {
+    if (sortState.direction) {
+      this.requestPayload.sorting.field = sortState.active;
+      sortState.direction === 'asc'
+        ? (this.requestPayload.sorting.direction = 0)
+        : (this.requestPayload.sorting.direction = 1);
+    } else {
+      this.requestPayload.sorting.field = 'id';
+    }
     this.refreshTodos();
   }
 

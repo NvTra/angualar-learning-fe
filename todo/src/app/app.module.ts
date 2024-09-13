@@ -25,6 +25,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSortModule } from '@angular/material/sort';
+import { TodoModalComponent } from './modal/todo-modal/todo-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +39,7 @@ import { MatRadioModule } from '@angular/material/radio';
     LogoutComponent,
     TodoComponent,
     DeleteDialogComponent,
+    TodoModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatNativeDateModule,
     ReactiveFormsModule,
     MatRadioModule,
+    MatSortModule,
   ],
   providers: [
     {

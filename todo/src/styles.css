@@ -23,3 +23,7 @@ body {
 .pt-10px {
   padding-top: 10px;
 }
+
+.mat-sort-header-arrow {
+  color: white;
+}
