@@ -39,11 +39,11 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
   requestPayload: IRequestPayLoad = {
     username: 'tranv',
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 5,
     sorting: { direction: 1, field: 'id' },
   };
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { read: true }) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.todos.paginator = this.paginator;
@@ -63,8 +63,6 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
     this.service.getAllTodos(this.requestPayload).subscribe((res) => {
       this.todos.data = [...res.data];
       this.totalItems = res.totalCount;
-      console.log('res: ', res);
-      console.log(this.todos.data);
     });
   }
 
