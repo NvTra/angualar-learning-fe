@@ -1,23 +1,27 @@
 import {
+  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { BasicAuthenticationService } from './../basic-authentication.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpIntercepterBasicService implements HttpInterceptor {
-  constructor(private basicAuthenticationService: BasicAuthenticationService) {}
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
-    // let username = 'tranv';
-    // let password = '123456';
-    // let basicAuthHeaderString =
-    //   'Basic ' + window.btoa(username + ':' + password);
+  constructor(
+    private basicAuthenticationService: BasicAuthenticationService,
+    private router: Router
+  ) {}
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     let basicAuthHeaderString =
       this.basicAuthenticationService.getAuthenticatedToken();
 
@@ -32,5 +36,13 @@ export class HttpIntercepterBasicService implements HttpInterceptor {
     }
 
     return next.handle(req);
+    // .pipe(
+    //   catchError((error: HttpErrorResponse) => {
+    //     if (error.status === 401) {
+    //       console.log(error);
+    //     }
+    //     return throwError(error);
+    //   })
+    // );
   }
 }
