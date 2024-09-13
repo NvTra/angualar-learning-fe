@@ -57,36 +57,12 @@
 
     <tr mat-row *matRowDef="let row; columns: tableColumn"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons>
+  <mat-paginator
+    [length]="totalItems"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    [pageIndex]="requestPayload.pageIndex"
+    [pageSize]="requestPayload.pageSize"
+    (page)="onPageChange($event)"
+  >
   </mat-paginator>
-  <!-- <table class="table">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>Description</th>
-        <th>Target Date</th>
-        <th>Is Complete?</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let todo of todos">
-        <td>{{ todo.id }}</td>
-        <td>{{ todo.description }}</td>
-        <td>{{ todo.targetDate | date | uppercase }}</td>
-        <td>{{ todo.done }}</td>
-        <td>
-          <button (click)="updateTodo(todo.id)" class="btn btn-success">
-            Update
-          </button>
-        </td>
-        <td>
-          <button (click)="deleteTodo(todo.id)" class="btn btn-warning">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
 </div>

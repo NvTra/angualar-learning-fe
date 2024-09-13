@@ -1,10 +1,15 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Router } from '@angular/router';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { IRequestPayLoad } from '../interfaces/request-payload';
 export class Todo {
   constructor(
     public id: number,
@@ -22,6 +27,7 @@ export class Todo {
 export class ListTodosComponent implements OnInit, AfterViewInit {
   todos: MatTableDataSource<Todo> = new MatTableDataSource<Todo>([]);
   message: string | undefined;
+  totalItems = 0;
   tableColumn: string[] = [
     'Index',
     'description',
@@ -29,6 +35,13 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
     'done',
     'action',
   ];
+
+  requestPayload: IRequestPayLoad = {
+    username: 'tranv',
+    pageIndex: 0,
+    pageSize: 10,
+    sorting: { direction: 1, field: 'id' },
+  };
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -47,9 +60,19 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
   }
 
   refreshTodos() {
-    this.service.retrieveAllTodos('tranv').subscribe((res: Todo[]) => {
-      this.todos.data = res;
+    this.service.getAllTodos(this.requestPayload).subscribe((res) => {
+      this.todos.data = [...res.data];
+      this.totalItems = res.totalCount;
+      console.log('res: ', res);
+      console.log(this.todos.data);
     });
+  }
+
+  onPageChange(event: PageEvent) {
+    this.requestPayload.pageIndex = event.pageIndex;
+    this.requestPayload.pageSize = event.pageSize;
+
+    this.refreshTodos();
   }
 
   deleteTodo(id: number) {
@@ -61,7 +84,6 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
   }
 
   updateTodo(id: number) {
-    console.log(id);
     this.router.navigate(['todo', id]);
   }
 

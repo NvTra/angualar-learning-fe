@@ -3,6 +3,8 @@ import { HelloWorldBean } from './welcome-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from 'src/app/list-todos/list-todos.component';
 import { API_JPA_URL } from 'src/app/app.constants';
+import { IRequestPayLoad } from 'src/app/interfaces/request-payload';
+import { IPageData } from 'src/app/interfaces/page-data';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,13 @@ export class TodoDataService {
 
   retrieveAllTodos(usename: string) {
     return this.http.get<Todo[]>(`${API_JPA_URL}/user/${usename}/todos`);
+  }
+
+  getAllTodos(payload: IRequestPayLoad) {
+    return this.http.post<IPageData<Todo>>(
+      `${API_JPA_URL}/user/todos`,
+      payload
+    );
   }
 
   retrieveTodo(usename: string, id: number) {
