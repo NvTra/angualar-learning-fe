@@ -36,7 +36,6 @@ export class TodoComponent implements OnInit {
             targetDate: res.targetDate,
             done: res.done ? 'true' : 'false',
           });
-          console.log(this.useForm.value);
         },
         error: (error) => {
           console.log(error);

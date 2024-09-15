@@ -27,3 +27,13 @@ body {
 .mat-sort-header-arrow {
   color: white;
 }
+
+.custom-snackbar {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.mat-mdc-snack-bar-label {
+  background-color: #4caf50;
+  color: #fff;
+}

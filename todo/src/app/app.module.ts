@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
 import { TodoModalComponent } from './modal/todo-modal/todo-modal.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { TodoModalComponent } from './modal/todo-modal/todo-modal.component';
     ReactiveFormsModule,
     MatRadioModule,
     MatSortModule,
+    MatSnackBarModule,
   ],
   providers: [
     {

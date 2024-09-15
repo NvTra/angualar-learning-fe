@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { IRequestPayLoad } from '../interfaces/request-payload';
 import { MatSort, Sort } from '@angular/material/sort';
+import { TodoModalComponent } from '../modal/todo-modal/todo-modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 export class Todo {
   constructor(
     public id: number,
@@ -27,7 +29,6 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit, AfterViewInit {
   todos: MatTableDataSource<Todo> = new MatTableDataSource<Todo>([]);
-  message: string | undefined;
   totalItems = 0;
   tableColumn: string[] = [
     'Index',
@@ -53,8 +54,8 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
 
   constructor(
     private service: TodoDataService,
-    private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -83,24 +84,32 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
         : (this.requestPayload.sorting.direction = 1);
     } else {
       this.requestPayload.sorting.field = 'id';
+      this.requestPayload.sorting.direction = 0;
     }
     this.refreshTodos();
   }
 
   deleteTodo(id: number) {
     this.service.delete('tranv', id).subscribe((res) => {
-      console.log(res);
-      this.message = `Delete of Todo ${id} Successfuly`;
+      this.snackBar.open(`Successfully deleted todo id: ${id}`, '', {
+        duration: 2000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+      });
       this.refreshTodos();
     });
   }
 
-  updateTodo(id: number) {
-    this.router.navigate(['todo', id]);
-  }
+  openEditModal(todoId: number) {
+    const dialogRef = this.dialog.open(TodoModalComponent, {
+      data: { todoId: todoId },
+    });
 
-  addTodo() {
-    this.router.navigate(['todo', -1]);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.refreshTodos();
+      }
+    });
   }
 
   openDialog(todoId: number) {

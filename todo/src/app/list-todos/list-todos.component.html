@@ -1,9 +1,10 @@
 <h1>My Todo's</h1>
-<div class="alert alert-success" *ngIf="message">{{ message }}</div>
 
 <div class="container">
   <div class="row p-2 pe-2 justify-content-end">
-    <button (click)="addTodo()" class="btn btn-success btn-sm">Add New</button>
+    <button (click)="openEditModal(0)" class="btn btn-success btn-sm">
+      Add New
+    </button>
   </div>
   <table
     mat-table
@@ -57,7 +58,7 @@
         <button
           mat-button
           class="btn btn-primary btn-sm"
-          (click)="updateTodo(todo.id)"
+          (click)="openEditModal(todo.id)"
         >
           Edit
         </button>

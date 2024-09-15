@@ -35,14 +35,15 @@ export class HttpIntercepterBasicService implements HttpInterceptor {
       });
     }
 
-    return next.handle(req);
-    // .pipe(
-    //   catchError((error: HttpErrorResponse) => {
-    //     if (error.status === 401) {
-    //       console.log(error);
-    //     }
-    //     return throwError(error);
-    //   })
-    // );
+    return next.handle(req).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.log(error);
+
+        if (error.status === 401) {
+          console.log(error);
+        }
+        return throwError(error);
+      })
+    );
   }
 }
