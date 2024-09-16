@@ -42,7 +42,7 @@ export class ListTodosComponent implements OnInit, AfterViewInit {
     username: 'tranv',
     pageIndex: 0,
     pageSize: 5,
-    sorting: { direction: 1, field: 'id' },
+    sorting: { direction: 0, field: 'id' },
   };
 
   @ViewChild(MatPaginator, { read: true }) paginator!: MatPaginator;

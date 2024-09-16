@@ -48,7 +48,7 @@ export class LoginComponent {
         },
         (error) => {
           console.log(error);
-          this.openMessage('Login fail!');
+          this.openMessage('Invalid Username or password');
           // this.invalidLogin = true;
         }
       );
@@ -59,7 +59,7 @@ export class LoginComponent {
       duration: 3000,
       verticalPosition: 'top',
       horizontalPosition: 'center',
-      panelClass: ['custom-snackbar'],
+      panelClass: ['success-dialog-snackbar'],
     });
   }
 }

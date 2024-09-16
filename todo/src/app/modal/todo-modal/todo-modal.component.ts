@@ -63,7 +63,6 @@ export class TodoModalComponent implements OnInit {
   }
 
   saveTodo() {
-    console.log('start');
     if (this.formInstance.invalid) {
       return;
     }
@@ -77,7 +76,7 @@ export class TodoModalComponent implements OnInit {
       todoData.id = undefined;
       this.todoService.saveTodo('tranv', todoData).subscribe(
         (data) => {
-          this.snackBar.open('successfully created', '', {
+          this.snackBar.open('Successfully created !', '', {
             duration: 2000,
             verticalPosition: 'top',
             horizontalPosition: 'center',
@@ -93,7 +92,7 @@ export class TodoModalComponent implements OnInit {
         .updateTodo('tranv', this.data.todoId, todoData)
         .subscribe((data) => {
           console.log(data);
-          this.snackBar.open('successfully updated', '', {
+          this.snackBar.open('Successfully updated !', '', {
             duration: 2000,
             verticalPosition: 'top',
             horizontalPosition: 'center',
@@ -101,7 +100,6 @@ export class TodoModalComponent implements OnInit {
         });
     }
     this.dialogRef.close(true);
-    console.log('end');
   }
 
   onNoClick(): void {
