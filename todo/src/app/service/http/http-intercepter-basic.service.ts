@@ -39,10 +39,11 @@ export class HttpIntercepterBasicService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.log(error);
 
-        if (error.status === 401) {
-          console.log(error);
-        }
-        return throwError(error);
+        // if (error.status === 0) {
+        //   this.router.navigate(['login']);
+        //   console.log(error);
+        // }
+        return throwError(() => new Error(error.message));
       })
     );
   }

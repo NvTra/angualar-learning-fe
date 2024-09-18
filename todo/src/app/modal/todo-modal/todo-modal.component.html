@@ -2,7 +2,7 @@
   <form [formGroup]="formInstance" (ngSubmit)="saveTodo()" class="p-4">
     <div class="row">
       <mat-label class="pt-10px">Description: </mat-label>
-      <mat-form-field appearance="outline" class="mx-2" style="width: 500px">
+      <mat-form-field appearance="outline" class="mx-2" style="width: 300px">
         <input
           matInput
           formControlName="description"
@@ -21,17 +21,9 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="showUpdate" class="row">
-      <mat-label class="pt-10px">Is Complete: </mat-label>
-      <mat-radio-group formControlName="done">
-        <mat-radio-button value="true">Done</mat-radio-button>
-        <mat-radio-button value="false">Not Done</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
     <div class="row">
       <mat-label class="pt-10px">Target Date: </mat-label>
-      <mat-form-field appearance="outline" class="mx-2" style="width: 500px">
+      <mat-form-field appearance="outline" class="mx-2" style="width: 300px">
         <input
           matInput
           [matDatepicker]="picker"
@@ -44,6 +36,13 @@
           Target Date is required
         </mat-error>
       </mat-form-field>
+    </div>
+    <div *ngIf="showUpdate" class="row">
+      <mat-label class="pt-10px">Is Complete: </mat-label>
+      <mat-radio-group formControlName="done">
+        <mat-radio-button value="true">Done</mat-radio-button>
+        <mat-radio-button value="false">Not Done</mat-radio-button>
+      </mat-radio-group>
     </div>
 
     <button mat-raised-button class="btn btn-success" type="submit">

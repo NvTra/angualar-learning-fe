@@ -76,6 +76,7 @@ export class TodoModalComponent implements OnInit {
       todoData.id = undefined;
       this.todoService.saveTodo('tranv', todoData).subscribe(
         (data) => {
+          console.log(data);
           this.snackBar.open('Successfully created !', '', {
             duration: 2000,
             verticalPosition: 'top',

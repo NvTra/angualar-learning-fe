@@ -1,16 +1,30 @@
-<H1>Login!</H1>
-
-<div class="container">
+<div class="container form-group m-auto w-25">
+  <H1>Login!</H1>
   <!-- <div class="alert alert-warning" *ngIf="invalidLogin">
     {{ errorMessage }}
   </div> -->
-  <div>
-    User name:
-    <input type="text" name="username" [(ngModel)]="username" />
-    Password:
-    <input type="password" name="password" [(ngModel)]="password" />
 
-    <!-- <button (click)="onLogin()" class="btn btn-success">Login</button> -->
-    <button (click)="onBasicLogin()" class="btn btn-success">Login</button>
+  <div class="row">
+    <label for="" class="form-label">User name:</label>
+    <input
+      type="text"
+      name="username"
+      [(ngModel)]="username"
+      class="form-control"
+    />
+  </div>
+  <div class="row mt-3">
+    <label class="form-label">Password:</label>
+    <input
+      class="form-control"
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+    />
+  </div>
+
+  <!-- <button (click)="onLogin()" class="btn btn-success">Login</button> -->
+  <div class="row">
+    <button (click)="onBasicLogin()" class="btn btn-success mt-3">Login</button>
   </div>
 </div>

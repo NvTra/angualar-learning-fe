@@ -14,6 +14,7 @@ body {
   padding-top: 5px !important;
   padding-bottom: 5px !important;
   min-height: 0 !important;
+  font-size: 14px;
 }
 
 .mdc-label {
@@ -28,6 +29,13 @@ body {
   color: white;
 }
 
+.mat-mdc-form-field-flex {
+  height: 35px;
+}
+::ng-deep .success-dialog-snackbar {
+  background-color: red !important;
+  color: #fff !important;
+}
 .custom-snackbar {
   background-color: #4caf50;
   color: #fff;
